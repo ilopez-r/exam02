@@ -1,26 +1,31 @@
-#include<stdio.h>
+#include <stdlib.h>
 
 size_t	ft_strcspn(const char *s, const char *reject)
 {
-	size_t i;
-	size_t j;
+	int i;
+	int j;
 
 	i = 0;
 	j = 0;
-	while (s[i] != reject[j] && s[i] != '\0' && reject[j] != '\0')
+	while (s[i] != '\0')
 	{
-		while (s[i] != reject[j] && s[i] != '\0' && reject[j] != '\0')
-			i++;
-		if (s[i] != reject[j])
+		while (s[i] != '\0' && s[i] != reject[j])
 		{
-            i = 0;
-			j++;
-		}
-	}
-	if (reject[j] == '\0')
-	{
-		while (s[i] != '\0')
 			i++;
+			if (s[i] == '\0' && reject[j] != '\0')
+			{
+				i = 0;
+				j++;
+			}
+		}
+		if (s[i] != '\0' && s[i] == reject[j])
+			return (i);
 	}
 	return (i);
 }
+/*
+#include <stdio.h>
+int main ()
+{
+	printf("%zu", ft_strcspn("hell", "d"));
+}*/
